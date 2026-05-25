@@ -90,4 +90,4 @@ export default function ManageEvents() {
   )
 }
 
-export default ManageEvents
+
