@@ -1,0 +1,31 @@
+# ── Netlify configuration for VVCE Events Hub (React SPA) ─────────────────────
+
+[build]
+  # Use npm run build — NOT npx vite build (causes permission denied on Netlify)
+  command   = "npm run build"
+  publish   = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_VERSION  = "10"
+
+# ── SPA fallback: ALL routes serve index.html so React Router works ────────────
+# Without this, direct links like /verify-email or /dashboard return Netlify 404
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
+
+# ── Security headers ───────────────────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+
+# ── Cache static assets aggressively ──────────────────────────────────────────
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

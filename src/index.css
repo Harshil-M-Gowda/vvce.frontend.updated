@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'DM Sans', sans-serif;
+    @apply text-navy bg-slate-50;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', sans-serif;
+  }
+}
+
+@layer components {
+  .btn-gold {
+    @apply bg-gold-gradient text-navy font-syne font-bold rounded-lg transition-opacity hover:opacity-90;
+  }
+  .btn-outline {
+    @apply bg-white border border-slate-200 text-navy font-syne font-semibold rounded-lg hover:border-navy transition-colors;
+  }
+  .card {
+    @apply bg-white rounded-xl border border-slate-100 shadow-card;
+  }
+  .input {
+    @apply w-full px-3.5 py-2.5 border border-slate-200 rounded-lg text-sm font-dm text-navy
+           focus:outline-none focus:border-gold transition-colors bg-white;
+  }
+  .label {
+    @apply block text-xs font-medium text-slate-500 mb-1.5;
+  }
+  .nav-item {
+    @apply flex items-center gap-2.5 px-5 py-2.5 text-[13px] font-medium text-white/60
+           border-l-[3px] border-transparent cursor-pointer transition-all
+           hover:text-white hover:bg-white/5;
+  }
+  .nav-item.active {
+    @apply text-gold border-l-gold bg-gold/10;
+  }
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold font-syne;
+  }
+  .badge-pending  { @apply bg-amber-50 text-amber-700; }
+  .badge-approved { @apply bg-emerald-50 text-emerald-700; }
+  .badge-rejected { @apply bg-red-50 text-red-700; }
+  .badge-student  { @apply bg-blue-50 text-blue-700; }
+  .badge-admin    { @apply bg-orange-50 text-orange-700; }
+  .badge-authority{ @apply bg-purple-50 text-purple-700; }
+}
+
+@layer utilities {
+  .font-syne { font-family: 'Syne', sans-serif; }
+  .font-dm   { font-family: 'DM Sans', sans-serif; }
+  .bg-gold-gradient { background: linear-gradient(135deg, #f0a500, #f7c948); }
+  .bg-navy-gradient { background: linear-gradient(135deg, #0a1628, #1a3560); }
+  .border-l-gold { border-left-color: #f0a500; }
+  .text-gold { color: #f0a500; }
+  .text-navy { color: #0a1628; }
+}
+
+/* Smooth page transitions */
+.page-enter { animation: pageIn 0.25s ease; }
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Calendar override */
+.react-calendar {
+  @apply w-full border-0 font-dm text-sm;
+}
+.react-calendar__tile--active {
+  background: #f0a500 !important;
+  color: #0a1628 !important;
+  font-weight: 700;
+  border-radius: 8px;
+}
+.react-calendar__tile--now {
+  background: #0a1628 !important;
+  color: white !important;
+  border-radius: 8px;
+}
+.react-calendar__tile:hover {
+  background: #fff8e6 !important;
+  border-radius: 8px;
+}
+.react-calendar__navigation button:hover {
+  background: #f4f6fa !important;
+  border-radius: 8px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
